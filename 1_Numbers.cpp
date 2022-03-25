@@ -18,7 +18,6 @@ void HeaderCheck(){
 void OctalValues(){
     //this applies to ints and floats as well
     int i = 100, j = 0100;
-    float k = 0100;
     cout << " Values of 'int i = 100' : i is really " << i << ", and 'int i = 0100' : i is really " << j << endl;
     cout << " This happens because when we attach 0 ahead of j, \n we request to read in \"Octal Values\" instead of \"Decimal Values\"" << endl;
 }//(2)
@@ -53,16 +52,16 @@ void CheckEndian(){
     cout << " Mem size of the word : " << sizeof(word) << " Bytes, Binary value of 'Word' : " << std::bitset<8>(word) << endl;
     cout << " Out of " << sizeof(word) << " bytes, we will fetch the address of the first byte : " << &b   
     << " \n 1) If start char address contains value of 1, that is least significant digit is at the start so, it is little-endian encoding."   
-    << "\n 2) If start char address contains value of 0, that is least significant digit is not at the start so, it is big-endian encoding." << endl;
+    << " \n 2) If start char address contains value of 0, that is least significant digit is not at the start so, it is big-endian encoding." << endl;
 
     cout << " b[0] Value: " << (b[0] ? 1 : 0) <<(b[0] ? " : Little Endian " : " : Big Endian ") << endl;
 
     // Q : What is the reason most os implements little-endian encoding?
     /* A : Well, even if we assign let's say 4 bytes to a variable we don't always use the full capacity,
-    * Most of the numbers will have 0s in their significant digit space. With big endian encoding, 
-    * we traverse from most significant digit to least, we traverse through 0s first most of the time. 
-    * >>> To make it more efficient, we can traverse through least digit first, which will most likely won't be zero.
-    */
+    *      Most of the numbers will have 0s in their significant digit space. With big endian encoding, 
+    *      we traverse from most significant digit to least, we traverse through 0s first most of the time. 
+    *      >>> To make it more efficient, we can traverse through least digit first, which will most likely won't be zero.
+    ***************/
 
     #endif
 }//(3)
