@@ -8,7 +8,7 @@
 //** (1) ****************************//
 void HeaderCheck(){
 #ifdef __cpp_lib_format //if format lib is available, compile code below (one with use of format library),
-    cout << format("Why format not working!");
+    cout << format("Hello world using std::format!");
 #else //code without the use of format library
     cout << "Hello World!" << endl;
 #endif
