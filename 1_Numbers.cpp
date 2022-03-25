@@ -1,7 +1,7 @@
 #include "1_Numbers.hpp"
 /*  What's covered?
 ** (1) How to check if a header is available? and if yes, how to conditionally use it?
-** (2) Never attach 0 in from of a value (int of float), why?
+** (2) Never attach 0 in front of a value (int or float), why?
 ** (3) How to know if my program is compiled for big - or little- endian?
 */
 
