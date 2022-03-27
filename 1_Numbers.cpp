@@ -3,6 +3,8 @@
 ** (1) How to check if a header is available? and if yes, how to conditionally use it?
 ** (2) Never attach 0 in front of a value (int or float), why?
 ** (3) How to know if my program is compiled for big - or little- endian?
+** (4) Basics of floats and the way it is stored.
+** (5) Basics of integers and initialization
 */
 
 //** (1) ****************************//
@@ -66,5 +68,68 @@ void CheckEndian(){
     #endif
 }//(3)
 
+//** (4) ****************************//
+void FloatNumbers(){
+    /* let's consider the example of number 365
+    ** Here it can be represeted in floating point number as shown below,
+    ** 3.650000E02 - 3.650000 is called 'Mentissa' which has 7 digits and 02 is an 'exponent'. Here 'E' stands for exponent. 
+    *******/
+
+   /* let's consider the example of number 365,652,2595
+    ** Here it can be represeted in floating point number as shown below,
+    ** 3.656522E09 - Even though we have represented the same number here but we have lost three lower order digits.
+    ** In memory, 1 single bit is required to store the sign, followed by fixed bits for mentissa and remaining for exponent
+    ** Single precision : (32-bit total) : 1 sign, 23 for mentissa and 8 for exponent
+    ** Double precision : (64-bit total) : 1 sign, 52 for mentissa and 11 for exponent
+    *******/
+
+
+} //(4)
+
+//** (5) ****************************//
+void IntNumbers(){
+
+    /* Memory occupied by int
+    ** (S/U)Char    - 1   byte (Unsigned/signed only. This is not a character char, that would be just 'char' - without any signature notation)
+    ** Short int    - 2   byte
+    ** int          - 4   byte
+    ** long int     - 4/8 byte
+    ** long long int- 8   byte
+    ** If you ever need to work with raw memory, prefer c++20 std::byte over (u/s) char or char. 
+    */
+    
+    // All the ways you can initialize int,
+    int appCount = 5; //Assignment notation
+    int dotCount {5}; //Braced initializer
+    int mainCount {appCount + dotCount};
+    int eveCount(5);  //Functional notation
+
+    cout << "int appCount = 5: " << appCount << ", int dotCount {5}: " << dotCount << ", int mainCount {appCount + dotCount}: " << mainCount << ", int eveCount(5): " << eveCount << endl;
+
+    // empty initialization
+    int garbage;                //contains garbage value
+    int zeroInitialized{};      //automatic zero initialization
+    int MoreZeroInitialized{0}; //zero initialization
+
+    cout << "int garbage: " << garbage << ", int zeroInitialized{}: " << zeroInitialized << ", int MoreZeroInitialized{0}: " << MoreZeroInitialized  << endl;
+
+    // implicit conversion problem from other data type to int
+  //int popayHand{2.2}; //gives complilation warning or error for implicit conversion or data loss
+    int bloobHand(5.5); //compiles without warning, accepts value of 5 (data loss occured)
+    int soWhat = 2.52;  //compiles without warning, accepts value of 2 (data loss occured)
+
+    cout << "int bloobHand(5.5): " << bloobHand << ", int soWhat = 2.52: " << soWhat << endl;
+
+    //initialization with auto keyword,
+    auto IntNomral      {5};
+    auto IntLong        {5L};
+    auto IntUnsigned    {5U};
+    auto IntLongLong    {5LL};
+    auto USIntLongLong  {5ULL};
+    auto GoodVisible    {10'2525'32LL}; //Using ' to make number readable and does not affect the numbers itself
+
+}//(5)
+
 int main(){
+    IntNumbers();
 }
