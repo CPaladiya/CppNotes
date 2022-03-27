@@ -12,7 +12,7 @@ void HeaderCheck(){
 #ifdef __cpp_lib_format //if format lib is available, compile code below (one with use of format library),
     cout << format("Hello world using std::format!");
 #else //code without the use of format library
-    cout << "Hello World!" << endl;
+    cout << "Hello World without std::format!" << endl;
 #endif
 }//(1)
 
@@ -49,13 +49,15 @@ void CheckEndian(){
     #else
 
     cout << " ---------Testing endian the old school way!------------- " << endl;
+    
     short int word = 0x0001; // assigning some value to short int
     char *b = (char*) &word;
     cout << " Mem size of the word : " << sizeof(word) << " Bytes, Binary value of 'Word' : " << std::bitset<8>(word) << endl;
+    
     cout << " Out of " << sizeof(word) << " bytes, we will fetch the address of the first byte : " << &b   
     << " \n 1) If start char address contains value of 1, that is least significant digit is at the start so, it is little-endian encoding."   
     << " \n 2) If start char address contains value of 0, that is least significant digit is not at the start so, it is big-endian encoding." << endl;
-
+    
     cout << " b[0] Value: " << (b[0] ? 1 : 0) <<(b[0] ? " : Little Endian " : " : Big Endian ") << endl;
 
     // Q : What is the reason most os implements little-endian encoding?
@@ -71,7 +73,8 @@ void CheckEndian(){
 //** (4) ****************************//
 void FloatIntNumbers(){
 
-    /******* INT : Memory occupied by int
+    /******* INT : Memory occupied by int *********************************************************
+
     ** (S/U)Char    - 1   byte (Unsigned/signed only. This is not a character char, that would be just 'char' - without any signature notation)
     ** Short int    - 2   byte
     ** int          - 4   byte
@@ -80,30 +83,42 @@ void FloatIntNumbers(){
     ** If you ever need to work with raw memory, prefer c++20 std::byte over (u/s) char or char. 
     */
     
+    cout << "********** INT *********" << endl;
     // All the ways you can initialize int,
     int appCount = 5; //Assignment notation
     int dotCount {5}; //Braced initializer
     int mainCount {appCount + dotCount};
     int eveCount(5);  //Functional notation
-
-    cout << "********** INT *********" << endl;
-    cout << "int appCount = 5: " << appCount << ", int dotCount {5}: " << dotCount << ", int mainCount {appCount + dotCount}: " << mainCount << ", int eveCount(5): " << eveCount << endl;
-
+    
+    cout << " int appCount = 5: " << appCount << ", int dotCount {5}: " << dotCount << ", int mainCount {appCount + dotCount}: " << mainCount << ", int eveCount(5): " << eveCount << endl;
     // empty initialization
     int garbage;                //contains garbage value
     int zeroInitialized{};      //automatic zero initialization
     int MoreZeroInitialized{0}; //zero initialization
-
-    cout << "int garbage: " << garbage << ", int zeroInitialized{}: " << zeroInitialized << ", int MoreZeroInitialized{0}: " << MoreZeroInitialized  << endl;
+    cout << " int garbage: " << garbage << ", int zeroInitialized{}: " << zeroInitialized << ", int MoreZeroInitialized{0}: " << MoreZeroInitialized  << endl;
 
     // implicit conversion problem from other data type to int
   //int popayHand{2.2}; //gives complilation warning or error for implicit conversion or data loss
     int bloobHand(5.5); //compiles without warning, accepts value of 5 (data loss occured)
     int soWhat = 2.52;  //compiles without warning, accepts value of 2 (data loss occured)
+    cout << " int bloobHand(5.5): " << bloobHand << ", int soWhat = 2.52: " << soWhat << endl;
 
-    cout << "int bloobHand(5.5): " << bloobHand << ", int soWhat = 2.52: " << soWhat << endl;
+    cout << "__________Pitfalls of Int___________" << endl;
 
-    /****** FLOAT : let's consider the example of number 365
+    // ************* pit falls of int ********
+    unsigned int smallValue = 5u;
+    int someValue = 25;  
+    cout << " Unsigned small value 5 - some int value 25 = should be -20, but it is: " << smallValue-someValue << endl;
+    // instead of smallValue-someValue = -20, it is 4294967276. It is because, statement is casted to unsigned int,
+    // which means, -20 is not a valid result, so the valid result would be total signed capacity - 20!
+
+    unsigned char someChar {251}; //this 'u_char' can only hold max 255 values, so if we add 10 to this, there should be an error, let's see!
+    someChar += 15;
+    cout << " u_char 251 + 15 : " << someChar << endl; //it doesn't give any error, so watch out for it!
+    
+
+    /****** FLOAT : let's consider the example of number 365 *************************************************************
+
     ** Here it can be represeted in floating point number as shown below,
     ** 3.650000E02 - 3.650000 is called 'Mentissa' which has 7 digits and 02 is an 'exponent'. Here 'E' stands for exponent. 
     *******/
@@ -124,9 +139,31 @@ void FloatIntNumbers(){
     double I2M = 25.4;
     long double random(1.256598564564566651564564135);
     cout << "\n********* FLOAT ********" << endl;
-    cout << "float piValueGarbage: " << piValueGarbage << ", float emptyFloat{}: " << emptyFloat
-    << ", float piDefined {3.1415926}: " << piDefined << ",\ndouble I2M = 25.4: " 
+    cout << " float piValueGarbage: " << piValueGarbage << ", float emptyFloat{}: " << emptyFloat
+    << ", float piDefined {3.1415926}: " << piDefined << ",\n double I2M = 25.4: " 
     << I2M << ", long double random(1.256598564564566651564564135): " << random << endl;
+
+    cout << "_________Pitfalls of Float__________" << endl;
+    // ************* pit falls of Float ********
+    /* Some things to look out for with floats 
+    ** 1) Many decimal values don't convert exactly to float.
+    ** 2) Taking differnce won't be accurate
+    ** 3) Values having different orders of magnitude, upon substraction or addition, small values is pretty much ignored.
+    */
+    
+    // 1) There is never exact conversion
+    float no1 = 4.0/3.0; //can never have perfect results in decimal world
+    
+    // 2) 
+    float no2a =  1.22'55'66'88'4, no2b = 1.22'55'66'88'1;
+    cout << std::setprecision(10) << std::fixed 
+    << " 1.22'55'66'88'4 - 1.22'55'66'88'1 should be : 0.00'00'00'00'3, However the difference here is : " 
+    << float(no2a - no2b) << endl;
+
+    // 3) As seen with example 2, when working with very big and very small values, very big values will over shadow, 
+    // small values in terms of precision. Meaning, the result won't be accurate and large value is largly unchanged.
+    float LargeValue = 100E10;
+    cout << " 100E10: "<< LargeValue << ", (100E10 + 0.01): "<< (LargeValue + 0.01) << ", (100E10 - 0.01): "<< (LargeValue - 0.02) << endl; 
 
 } //(4)
 

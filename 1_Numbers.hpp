@@ -6,7 +6,8 @@
 ** (5) Everything about literals
 */
 #include <iostream>
-#include <bitset>
+#include <bitset>  //to print binary and hex numbers
+#include <iomanip> //to manipulate cout stream
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Special def cases ^^^^^^^^^^^^^^^^^ //
 
