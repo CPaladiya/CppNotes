@@ -2,8 +2,8 @@
 ** (1) How to check if a header is available? and if yes, how to conditionally use it?
 ** (2) Never attach 0 in front of a value (int or float), why?
 ** (3) How to know if my program is compiled for big - or little- endian?
-** (4) Basics of floats and the way it is stored.
-** (5) Basics of integers and initialization
+** (4) Basics of floats and ints.
+** (5) Everything about literals
 */
 #include <iostream>
 #include <bitset>
@@ -24,9 +24,8 @@ using namespace std;
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Clarification Funcs ^^^^^^^^^^^^^^^^^ //
 
-void HeaderCheck();  //(1)
-void OctalValues();  //(2)
-void CheckEndian();  //(3)
-void FloatNumbers(); //(4)
-void IntNumbers();   //(5)
-void Literals();     //(6)
+void HeaderCheck();   //(1)
+void OctalValues();   //(2)
+void CheckEndian();   //(3)
+void IntFltNumbers(); //(4)
+void Literals();      //(5)
