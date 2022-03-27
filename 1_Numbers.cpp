@@ -5,6 +5,7 @@
 ** (3) How to know if my program is compiled for big - or little- endian?
 ** (4) Basics of floats and the way it is stored.
 ** (5) Basics of integers and initialization
+** (6) Everything about literals
 */
 
 //** (1) ****************************//
@@ -120,15 +121,33 @@ void IntNumbers(){
 
     cout << "int bloobHand(5.5): " << bloobHand << ", int soWhat = 2.52: " << soWhat << endl;
 
-    //initialization with auto keyword,
+}//(5)
+
+//** (6) ****************************//
+void Literals(){
+
+    /*Constant values of any kind is called literals ex, 100.1, 'A', "Tesla", 555, etc.*/
+    /* Unsinged U/u, Long L/l, Long Long LL/ll, Unsigned Long UL/ul, Unsigned long long ULL/ull*/
+
+    //int literals: initialization with auto keyword,
     auto IntNomral      {5};
     auto IntLong        {5L};
     auto IntUnsigned    {5U};
     auto IntLongLong    {5LL};
     auto USIntLongLong  {5ULL};
     auto GoodVisible    {10'2525'32LL}; //Using ' to make number readable and does not affect the numbers itself
+  //unsigned char WrongChar {513U}; //this is wrong since char is only 1 byte (0 to 255), and can not store 513 - complilation error!
+  //unsigned int WrongUInt {-1}; //this is wrong since -1 is not unsigned int - compilation error!
 
-}//(5)
+    // Hexadecimal literals: Have to append '0x' before hex number.
+    auto HIntNormal      {0x56BF};
+    auto HIntLongLong    {0x1ABLL};
+    auto HIntUnsigned    {0x25U};
+    auto HIntUSLongLong  {0x65'52'a6cull};
+
+    
+
+}//(6)
 
 int main(){
     IntNumbers();
