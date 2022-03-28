@@ -5,6 +5,8 @@
 ** (3) How to know if my program is compiled for big - or little- endian?
 ** (4) Basics of floats and ints.
 ** (5) Everything about literals
+** (6) Find out limits of flot/int and its versions
+** (7) How to initialize infinity values or NAN(not a number) values?
 */
 
 //** (1) ****************************//
@@ -212,7 +214,41 @@ void Literals(){
                                                
 }//(5)
 
+//** (6) ****************************//
+void IntFloatLimits(){
+    /* Findint the decimal limits of various data type********************************************
+    ** Limit here means, the highest and lowest number it can store
+    ** Max()   : Highest positive number a type can store
+    ** Min()   : Tiniest positive number a type can store if a float, otherwise same as Lowest().
+    ** Lowest(): A hugely negative number a type can store
+    ********************/
+
+   cout << " *************** INT ***************" <<  endl;
+   cout << " short  :: Max: " << numeric_limits<short>::max() << ", Min: " << numeric_limits<short>::min() << ", Lowest: " << numeric_limits<short>::lowest() << endl;
+   cout << " int    :: Max: " << numeric_limits<int>::max() << ", Min: " << numeric_limits<int>::min() << ", Lowest: " << numeric_limits<int>::lowest() << endl;
+   cout << " uint   :: Max: " << numeric_limits<unsigned int>::max() << ", Min: " << numeric_limits<unsigned int>::min() << ", Lowest: " << numeric_limits<unsigned int>::lowest() << endl;
+
+   cout << " \n************** FLOAT **************" <<  endl;
+   cout << " float  :: Max: " << numeric_limits<float>::max() << ", Min: " << numeric_limits<float>::min() << ", Lowest: " << numeric_limits<float>::lowest() << endl;
+   cout << " double :: Max: " << numeric_limits<double>::max() << ", Min: " << numeric_limits<double>::min() << ", Lowest: " << numeric_limits<double>::lowest() << endl;
+
+   /* Findint the bits in a type********************************************
+    ** The sign bit will be excluded
+    ** int   : all the bits required except sign bit
+    ** float : all the bits required for mentissa, excluding exponent and sign bit
+    ** Read more about available options: https://en.cppreference.com/w/cpp/types/numeric_limits
+    ********************/
+   cout << " \n************** BITS **************" <<  endl;
+   cout << " int   :: bits: " << numeric_limits<int>::digits << endl;
+   cout << " float :: Mentissa bits: " << numeric_limits<float>::digits << endl;
+
+}//(6)
+
+//** (7) ****************************//
+void InfyNANNum(){
+    
+}//(7)
+
 int main(){
-    FloatIntNumbers();
-    Literals();
+    IntFloatLimits();
 }

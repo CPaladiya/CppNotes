@@ -4,10 +4,13 @@
 ** (3) How to know if my program is compiled for big - or little- endian?
 ** (4) Basics of floats and ints.
 ** (5) Everything about literals
+** (6) Find out limits of flot/int and its versions.
+** (7) How to initialize infinity values or NAN(not a number) values?
 */
 #include <iostream>
-#include <bitset>  //to print binary and hex numbers
-#include <iomanip> //to manipulate cout stream
+#include <bitset>   //to print binary and hex numbers
+#include <iomanip>  //to manipulate cout stream
+#include <limits>   //to find out limits of types int/float
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Special def cases ^^^^^^^^^^^^^^^^^ //
 
@@ -30,3 +33,5 @@ void OctalValues();   //(2)
 void CheckEndian();   //(3)
 void IntFltNumbers(); //(4)
 void Literals();      //(5)
+void IntFloatLimits();//(6)
+void InfyNANNum();    //(7)
