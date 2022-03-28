@@ -1,13 +1,17 @@
-#include "1_Numbers.hpp"
-/*  What's covered?
+/********* What's covered?
+______
 ** (1) How to check if a header is available? and if yes, how to conditionally use it?
 ** (2) Never attach 0 in front of a value (int or float), why?
-** (3) How to know if my program is compiled for big - or little- endian?
+** (3) How to know if my program is compiled for big- or little- endian?
+______
 ** (4) Basics of floats and ints.
 ** (5) Everything about literals
-** (6) Find out limits of flot/int and its versions
+** (6) Find out limits of flot/int and its versions.
 ** (7) How to initialize infinity values or NAN(not a number) values?
-*/
+** (8) ALL about char data type
+***************************/
+
+#include "1_Numbers.hpp"
 
 //** (1) ****************************//
 void HeaderCheck(){
@@ -73,7 +77,7 @@ void CheckEndian(){
 }//(3)
 
 //** (4) ****************************//
-void FloatIntNumbers(){
+void IntFltNumbers(){
 
     /******* INT : Memory occupied by int *********************************************************
 
@@ -261,6 +265,94 @@ void InfyNANNum(){
 
 }//(7)
 
+//** (8) ****************************//
+void charInfo(){
+
+    /********** 'char' is different than 'signed char' or 'unsigned char'
+    ** signed or unsigned char is basically int with capacity of 1 byte
+    ** However, char is for character and it works in a character spcace */
+
+   //difference between unsinged/signed char and char,
+    unsigned char uChar = 50;
+    signed char sChar = -2;
+    cout << " ******** S/U Char **********" << endl;
+    cout << " unsigned char uChar = 50: " << uChar << ", signed char sChar = -10: " << sChar << endl;
+    cout << " value of uChar + 1: "<< uChar + 1 << endl;
+
+    char garbage; //contains garbage since not initialized
+    char yeah {'Y'}, nup {'N'}; //char always have singe quote ''
+    cout << " \n********* Char ***********" << endl;
+    cout << " char yeah {'Y'}: " << yeah << ", char nup {'N'}: " << nup << endl;
+    yeah++; //incrementing Y by 1
+    cout << " Incrementing yeah by 1: should be 89 for Y + 1 = 90. but it returns in terms of char : " << yeah << endl;
+    cout << " To get the underlying value it can be cast to int, std::static_cast<int> (yeah) : " << static_cast<int>(yeah) << endl;
+
+    cout << "\n__________Pitfalls of char___________" << endl;
+    //reading from user stream, all white space before char will be ignored.
+    //if tried to input other data type to char, only first digit will be stored as char
+    //depending on a compiler it may break the program too
+
+    char UserChar;
+    char UserInt;
+    //uncomment below to try it out,
+    //cout << " Please enter a single char value: " << endl;
+    //cin >> UserChar;
+    //cout << " system recorded: " << UserChar <<endl;
+
+    //cout << " Please enter an int value: " << endl;
+    //cin >> UserInt;
+    //cout << " system recorded: " << UserInt <<endl;
+
+    /********** wchar_t is a wide character, meaning char type only supports 256 character. Some languages have 10K+ characters.
+     ** So to accomodate such requirements, wchar_t is used. wchar_t can handle lot more than 256 characters.
+     ** To print wide character to console we need to use 'wcout' instead of 'cout', for input, 'wcin' instead of 'cin'
+     ** Always append L to wide char for successful compilation
+    **********/
+
+    //ways to define wchar_t,
+    wchar_t zChar {L'Z'};
+    auto zaChar {L'Z'}; //notice the appended L to indicate wchar_t
+    wcout << " value of wchar_t zChar {'Z'}: " << zChar << ", auto zaChar {L'Z'}: "<< zaChar << endl;
+
+    //since for some of the wide characters we don't have the keyboard keys, we can use hex code associated,
+    wchar_t cc {L'\x00E7'};
+    wcout << " wchar_t cc {L'\x00E7'}: "<< cc << endl;
+
+    /********** pitfalls of wchar_t
+     ** This type is implementation specific, windows implements 16 bit wchar_t, with wide character literlas encoded with UTF-16
+     ** Others do it 32 bit, with wide character literlas encoded with UTF-32
+     ** That is okay for apps that work with native plateform, but for cross plateform apps, this would be a problem
+     ** So, it is recommended to use char8_t, char16_t and char32_t. character encoding here is UTF-8, UTF-16 and UTF-32. Their size are same on all plateforms.
+     ** There is no provision in lib yet for handling char8, 16 or 32 stream print or input as wide characters have wcoud/wcin
+    **********/
+
+   //char8_t yen8 {u8'\x00A5'}; //u8, should always use char8_t to store UTF-8 encoded letters, instead of char
+   char16_t yen16 {u'\x00A5'}; //u or u16
+   char32_t yen32 {U'\x00A5'}; //U
+
+} //(8)
+
 int main(){
-    InfyNANNum();
+    
+    /********* What's covered?
+______
+** (1) How to check if a header is available? and if yes, how to conditionally use it?
+** (2) Never attach 0 in front of a value (int or float), why?
+** (3) How to know if my program is compiled for big- or little- endian?
+______
+** (4) Basics of floats and ints.
+** (5) Everything about literals
+** (6) Find out limits of flot/int and its versions.
+** (7) How to initialize infinity values or NAN(not a number) values?
+** (8) ALL about char data type
+***************************/
+
+    //HeaderCheck();   //(1)
+    //OctalValues();   //(2)
+    //CheckEndian();   //(3)
+    //IntFltNumbers(); //(4)
+    //Literals();      //(5)
+    //IntFloatLimits();//(6)
+    //InfyNANNum();    //(7)
+    charInfo();      //(8)
 }
