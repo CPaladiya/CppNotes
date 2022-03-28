@@ -96,6 +96,11 @@ void IntFltNumbers(){
     int mainCount {appCount + dotCount};
     int eveCount(5);  //Functional notation
     
+    //watch out for below,
+    auto autoInt {5};           //auto keyword will consider it int
+    auto autoIntProblem1 = 5;   //this is int
+    auto autoIntProblem2 = {5}; //this is not int, this is class std::initializer_list<int>
+    
     cout << " int appCount = 5: " << appCount << ", int dotCount {5}: " << dotCount << ", int mainCount {appCount + dotCount}: " << mainCount << ", int eveCount(5): " << eveCount << endl;
     // empty initialization
     int garbage;                //contains garbage value
