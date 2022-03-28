@@ -246,9 +246,21 @@ void IntFloatLimits(){
 
 //** (7) ****************************//
 void InfyNANNum(){
-    
+
+    /** All about Infinity and NAN first *****************
+    ** +-Value/0 or any operation of +-Value with +-Infinity results in +-Infinity
+    ** 0/0, 0*(+-Infinity) and any operation between multiple +-Infinity converts to NAN
+    *******************/
+
+    //Here is the way to initialize a infinity or NAN variable,
+    float positive_infinity = std::numeric_limits<float>::infinity();
+    double negative_infinity = -std::numeric_limits<double>::infinity();
+    long double not_a_number = std::numeric_limits<long double>::quiet_NaN();
+
+    cout << " positive_infinity: " << positive_infinity << ", negative_infinity: " <<  negative_infinity << ", not_a_number: " << not_a_number << endl;
+
 }//(7)
 
 int main(){
-    IntFloatLimits();
+    InfyNANNum();
 }
