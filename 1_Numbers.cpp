@@ -349,7 +349,60 @@ void BitWiseOp(){
 // Instead of 32 bool variable, each with 32-bit, what if we can define 1 varibale which can store info of 32 bool variable.
 // Here every single bit will be one variable
 
+//How we can use hex numbers directly to properly assign bit values,
+signed char MyHome      = 0x00;
+                        //HexVal    //Binary        //Decimal
+unsigned char AC        = 0x01;     //0000'0001     //1
+unsigned char Fridge    = 0x02;     //0000'0010     //2
+unsigned char Fan       = 0x04;     //0000'0100     //4
+unsigned char Light     = 0x08;     //0000'1000     //8
+unsigned char TV        = 0x10;     //0001'0000     //16
+unsigned char Heater    = 0x20;     //0010'0000     //32
+unsigned char Oven      = 0x40;     //0100'0000     //64
+unsigned char Toster    = 0x80;     //1000'0000     //128
 
+//Now let's load MyHome variable with all the appliance status,
+MyHome |= AC;
+cout << " MyHome after adding AC            : " << std::bitset<8>(MyHome) << endl;
+//Let's use the left associative nature of 'or' bit operator
+(((((((MyHome |= Fridge) |= Fan) |= Light) |= TV) |= Heater) |= Oven) |= Toster);
+cout << " MyHome after adding all appliances: " << std::bitset<8>(MyHome) << endl;
+
+//Now let's turn off AC, Fridge, Heater and Toster,
+cout << "\n __________ TURNING OFF __________ "  << endl;
+cout << " MyHome variable before any processing                  : " << std::bitset<8>(MyHome) << endl;
+cout << " Let's see how complement of AC variable, ~AC looks like: " << std::bitset<8>(~AC) << endl;
+MyHome &= ~AC;
+cout << " MyHome after turning off AC                            : " << std::bitset<8>(MyHome) << endl;
+(((MyHome &= ~Fridge) &= ~Heater) &= ~Toster);
+cout << " MyHome after turning off AC, Fridge, Heater and Toster : " << std::bitset<8>(MyHome) << endl;
+
+//Now let's turn ON Heater and Toster,
+cout << "\n __________ TURNING ON __________ " << endl;
+MyHome |= Heater;
+cout << " MyHome after turning ON Heater : " << std::bitset<8>(MyHome) << endl;
+MyHome |= Toster;
+cout << " MyHome after turning ON Toster : " << std::bitset<8>(MyHome) << endl;
+
+//Now let's toggle AC and Fan, meaning it should reverse the existing state of ON and OFF
+//XOR means if only one of two is 1, result is 1, otherwise result is 0
+cout << "\n __________ TOGGLE __________ " << endl;
+cout << " Before toggling state of any var : " << std::bitset<8>(MyHome) << endl;
+MyHome ^= AC;
+cout << " After toggling state of the AC   : " << std::bitset<8>(MyHome) << endl;
+MyHome ^= Fan;
+cout << " After toggling state of the FAN  : " << std::bitset<8>(MyHome) << endl;
+
+//Let's say we want to access status of FAN by shifting bits
+cout << "\n __________ SHIFT __________ " << endl;
+MyHome ^= Toster;
+cout << " Before shift of any kind         : " << std::bitset<8>(MyHome) << endl;
+MyHome = MyHome >> 3;
+cout << " Myhome = Myhome >> 3             : " << std::bitset<8>(MyHome) << endl;
+//now by simply checking if the number is odd or even, we can tell if the light is ON or NOT,
+//If its odd, means least significant bit is 1 - Means light is ON
+//If its even, means least significant bit is 0 - Means light is OFF
+cout << " Modulo (MyHome % 2) : " << MyHome%2 << ", here 1 Means the light is ON!, pretty smart eh! "<< endl;
 
 }//9
 
