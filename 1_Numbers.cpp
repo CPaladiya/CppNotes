@@ -9,6 +9,7 @@ ______
 ** (6) Find out limits of flot/int and its versions.
 ** (7) How to initialize infinity values or NAN(not a number) values?
 ** (8) ALL about char data type
+** (9) Bitwise operators
 ***************************/
 
 #include "1_Numbers.hpp"
@@ -341,6 +342,17 @@ void charInfo(){
 
 } //(8)
 
+//** (9) ****************************//
+void BitWiseOp(){
+
+// the idea behind bitwise use,
+// Instead of 32 bool variable, each with 32-bit, what if we can define 1 varibale which can store info of 32 bool variable.
+// Here every single bit will be one variable
+
+
+
+}//9
+
 int main(){
     
     /********* What's covered?
@@ -354,6 +366,7 @@ ______
 ** (6) Find out limits of flot/int and its versions.
 ** (7) How to initialize infinity values or NAN(not a number) values?
 ** (8) ALL about char data type
+** (9) Bitwise operators
 ***************************/
 
     //HeaderCheck();   //(1)
@@ -362,6 +375,7 @@ ______
     //IntFltNumbers(); //(4)
     //Literals();      //(5)
     //IntFloatLimits();//(6)
-    InfyNANNum();    //(7)
+    //InfyNANNum();    //(7)
     //charInfo();      //(8)
+    BitWiseOp();     //(9)
 }

@@ -9,6 +9,7 @@ ______
 ** (6) Find out limits of flot/int and its versions.
 ** (7) How to initialize infinity values or NAN(not a number) values?
 ** (8) ALL about char data type
+** (9) Bitwise operators
 ***************************/
 
 #include <iostream>
@@ -41,3 +42,4 @@ void Literals();      //(5)
 void IntFloatLimits();//(6)
 void InfyNANNum();    //(7)
 void charInfo();      //(8)
+void BitWiseOp();     //(9)
