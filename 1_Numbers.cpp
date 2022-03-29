@@ -268,6 +268,10 @@ void InfyNANNum(){
 
     cout << " positive_infinity: " << positive_infinity << ", negative_infinity: " <<  negative_infinity << ", not_a_number: " << not_a_number << endl;
 
+    //we can check if certain number is INFINITY or NAN as shown below,
+    cout << " is positive_infinity an INFINITY?: " << std::isinf(positive_infinity) << ", negative_infinity a NAN?: " 
+    << std::isnan(negative_infinity) << ", is not_a_number NAN?: " << std::isnan(not_a_number) << endl;
+
 }//(7)
 
 //** (8) ****************************//
@@ -358,6 +362,6 @@ ______
     //IntFltNumbers(); //(4)
     //Literals();      //(5)
     //IntFloatLimits();//(6)
-    //InfyNANNum();    //(7)
-    charInfo();      //(8)
+    InfyNANNum();    //(7)
+    //charInfo();      //(8)
 }

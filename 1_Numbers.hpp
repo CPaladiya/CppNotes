@@ -15,6 +15,7 @@ ______
 #include <bitset>   //to print binary and hex numbers
 #include <iomanip>  //to manipulate cout stream
 #include <limits>   //to find out limits of types int/float
+#include <cmath>    //to check if num is infinity or NAN
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Special def cases ^^^^^^^^^^^^^^^^^ //
 
