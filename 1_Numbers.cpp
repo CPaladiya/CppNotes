@@ -1,4 +1,4 @@
-/********* What's covered?
+/********* Numbers: What's covered?
 ______
 ** (1) How to check if a header is available? and if yes, how to conditionally use it?
 ** (2) Never attach 0 in front of a value (int or float), why?
@@ -408,7 +408,7 @@ cout << " Modulo (MyHome % 2) : " << MyHome%2 << ", here 1 Means the light is ON
 
 int main(){
     
-    /********* What's covered?
+    /********* Numbers: What's covered?
 ______
 ** (1) How to check if a header is available? and if yes, how to conditionally use it?
 ** (2) Never attach 0 in front of a value (int or float), why?
