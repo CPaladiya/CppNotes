@@ -14,4 +14,4 @@ using namespace std;
 
 void BoolAlpha();    //(1)
 void SpaceShipNAN(); //(2)
-void AllAboutIf();   //(2)
+void DecisionMaking();   //(2)

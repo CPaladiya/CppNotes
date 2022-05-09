@@ -63,7 +63,7 @@ void SpaceShipNAN(){
 }//(2)
 
 //** (3) ****************************//
-void AllAboutIf(){
+void DecisionMaking(){
 
     //The deadly ; - this causes to miss the next block and we will not reach the 
     if(0>5);
@@ -103,21 +103,29 @@ void AllAboutIf(){
 
     /************* Logical vs Bitwise operators ***************
     * Don't be confused about logical and bitwise operators, they look same but are not the same 
-    * && vs &, || vs |, ! vs ~ for example
+    * && vs &, || vs |, ! vs ~ for example. Bitwise XOR - ^ does not have any counter part in the world of logical operators
     * With logical operators, the value always evaluates to bool values - true or false , even though operands are integers or any other values
     * With bitwise operators, they always evaluate to integer numbers - even if both operands are bool
     **********************/
     
     //in the example of bitwise operators below we will have 'true | true' scenario, so true will be first converted to int '1 | 1' - and then bitwise operation will happen on its bit values
     if(500>1000 | 100>200) {}
-    //Bitwise operators are called short circuit operators since they always evaluate both sides of any operators, that is not the case with logical operators
-    //With logical operators if you have X || Y scenario, if X is true Y is not evaluated.
-    //Similarly, if you have X && Y scenario, and if X is false, Y is not evaluated.
 
+    /************* Logical vs Bitwise operators - short-circuit nature
+    * Bitwise operators always evaluate both sides of any operators, that is not the case with logical operators (also called short-circuit operators)
+    * With logical operators if you have X || Y scenario, if X is true Y is not evaluated.
+    * Similarly, if you have X && Y scenario, and if X is false, Y is not evaluated.
+    * So always start with the condition that is cheaper to evaluate to optimize the performance
+    * Also Bitwise XOR operator can be applied to the conditions within the if that evaluates to bool values.
+    ********************************/
 
+   // Use of Conditional (?) operator
+    int A, B, C, D;
+    A = 10; B = 15;
+    C = A > B ? A : B; //if A is greater than B, Assign C the value of A, otherwise the value of B
 
-
-
+    //Nested use of conditional operators
+    D = C > A ? (B > A ? B : A) : C;
 
 }//(3)
 
@@ -126,5 +134,5 @@ void AllAboutIf(){
 int main(){
     //BoolAlpha();      //(1)
     //SpaceShipNAN();   //(2)
-    AllAboutIf();       //(3)
+    DecisionMaking();       //(3)
 }
