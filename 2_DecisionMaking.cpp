@@ -1,6 +1,8 @@
 /********* Decision making: What's covered?
 ______
 ** (1) Comparision result and boolalpha
+** (2) Spaceship operator and NAN comparision
+** (3) If statements and its nuances
 
 ***************************/
 
@@ -60,9 +62,69 @@ void SpaceShipNAN(){
 
 }//(2)
 
+//** (3) ****************************//
+void AllAboutIf(){
+
+    //The deadly ; - this causes to miss the next block and we will not reach the 
+    if(0>5);
+        cout<<"This will always reached no matter the condition!"<<endl;
+    //else //this won't compile because of earlier ;
+        //cout<<"We can reach at else block" << endl;
+
+    if(0<5); // is same as if(0<5){ }
+
+    //Why this can happen? because empty ; is allowed in C++, so any statement with multiple ; at the end is valid
+    int i = 25;;;;;
+    cout << "Multiple ;;;;; is fine" << endl;;;;;;
+
+    //Casting true to an int converts it to 1 and false will be zero, and reverse is also true
+    bool BoolTrue = true;
+    bool BoolFalse = false;
+    int intTrue = (int) BoolTrue;
+    int intFalse = (int) BoolFalse;
+    cout << " Value of intTrue : " << intTrue << " value of intFalse : " << intFalse << endl;  
+
+    //any number greater than 0 is true in bool terms and only false when is equal to zero
+    BoolTrue = 77;
+    BoolFalse = 0;
+    cout << " After assigning 77, Value of BoolTrue : " << BoolTrue << " | After assigning 0, value of BoolFalse : " << BoolFalse << endl; 
+
+    //header <cctype> provides you with ways to test characters such as isupper(), isblank(), and ispunct() etc.
+
+    //else always belongs to the nearest if
+    if ("Coffee" == "Coffee")
+        if (0>5) {}
+        else {} //this else belongs to if(0>5) since its closest to that, to avoid this use brackets instead
+
+    //no need to compare a bool to a bool - true or false since it itself is a bool
+    bool IsValid = true;
+    if(IsValid == true) { } //no need to do this
+    if(IsValid) { } //this is suffice
+
+    /************* Logical vs Bitwise operators ***************
+    * Don't be confused about logical and bitwise operators, they look same but are not the same 
+    * && vs &, || vs |, ! vs ~ for example
+    * With logical operators, the value always evaluates to bool values - true or false , even though operands are integers or any other values
+    * With bitwise operators, they always evaluate to integer numbers - even if both operands are bool
+    **********************/
+    
+    //in the example of bitwise operators below we will have 'true | true' scenario, so true will be first converted to int '1 | 1' - and then bitwise operation will happen on its bit values
+    if(500>1000 | 100>200) {}
+    //Bitwise operators are called short circuit operators since they always evaluate both sides of any operators, that is not the case with logical operators
+    //With logical operators if you have X || Y scenario, if X is true Y is not evaluated.
+    //Similarly, if you have X && Y scenario, and if X is false, Y is not evaluated.
+
+
+
+
+
+
+}//(3)
+
 
 
 int main(){
     //BoolAlpha();      //(1)
-    SpaceShipNAN();
+    //SpaceShipNAN();   //(2)
+    AllAboutIf();       //(3)
 }
