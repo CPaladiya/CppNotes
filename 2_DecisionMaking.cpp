@@ -119,6 +119,15 @@ void DecisionMaking(){
     * Also Bitwise XOR operator can be applied to the conditions within the if that evaluates to bool values.
     ********************************/
 
+    //Advance use cases include initialization within the if statement
+    //Instead of standard way of doing this,
+    std::string Condition = "LetGo";
+    if(Condition == "LetGo") { cout << " We are letting it go! " << endl;}
+    //we can do this,
+    if(std::string Condition1 = "HoldOn"; Condition1 == "HoldOn") { cout << " We are Holding on! " << endl;}
+
+
+
    // Use of Conditional (?) operator
     int A, B, C, D;
     A = 10; B = 15;
@@ -129,10 +138,85 @@ void DecisionMaking(){
 
 }//(3)
 
+//** (4) ****************************//
+void Switch(){
+
+    //basic syntex of the switch 
+    const char Case = 'C'; //switch case can only take - integer/enum/char type!
+    switch (Case)
+    {
+        //useless since this variable can never be reached, if we use this InValidVar anywhere down in case, it won't work
+        //int InValidVar = 100; 
+
+    case 'a': //notice the colon
+        break; //end with semi-colon
+
+    case 'b': //this expression must be a constant - can not use if or any other statements & should be available at compile time
+        cout << "Case must be a constant!" << endl;
+        break;
+    
+    //<------Warning----------->
+    //case  if ("Short">"Long") "Short":"Long"; : //Invalid : this expression must be a constant, meaning we can not put if statement here for example. The value should be present at complile time
+    //cout << "Printing 10 " << endl;
+        //break;
+
+    case 'c':
+        //cout << "Invalid variable " << InValidVar << endl; //this won't work - InvalidVar defined earlier
+        //int j = 100; //not allowed
+        cout << "InvalidVar " << endl;
+        break;
+    
+    case 'C':
+        {
+            int j = 100; //Allowed - right way to declare variable - using brackets
+            cout << "Right way to declare the variable within case! Declared J : " << j << endl;
+            break;
+        }
+
+    //When multiple cases should run the same case
+    case 'd': case 'e': case 'f': 
+        cout << "Same output with multiple cases" << endl;
+        break;
+
+    //<------Warning----------->
+    case 'g': 
+        cout << "Without break; we will fall through!" << endl;
+        //break; // By mistake if we forget to use break, next case option will run regardless. - that is called accidental fall through
+
+    case 'h':
+        cout << "We have falled through from above since we don't have break; specified!" << endl;
+        break;
+
+    //useless since this variable can never be reached, if we use this InValidVar anywhere down in case, it won't work
+    //int InValidVar2 = 200; 
+
+    case 'i': 
+        cout << "Intentional fall throgh here!" << endl;
+        [[fallthrough]]; // Suggest to developer and compiler that there is the implementation of intentional fallthrough
+
+    default: //if any of the case does not satisfy, this will be ran
+        cout << "This is default" << endl;
+        break;
+    }
+
+    //advance intialization can be used as well,
+    switch (int j = 100; j)
+    {
+    case 100:
+        cout << "Using advance initialization" << endl;
+        break;
+    
+    default:
+        break;
+    }
+
+}//(4)
+
 
 
 int main(){
     //BoolAlpha();      //(1)
     //SpaceShipNAN();   //(2)
-    DecisionMaking();       //(3)
+    //DecisionMaking();   //(3)
+    Switch();           //(4)
 }
