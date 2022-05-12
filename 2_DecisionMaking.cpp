@@ -3,6 +3,7 @@ ______
 ** (1) Comparision result and boolalpha
 ** (2) Spaceship operator and NAN comparision
 ** (3) If statements and its nuances
+** (4) Good to know about switch statements
 
 ***************************/
 
