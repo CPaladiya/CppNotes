@@ -37,6 +37,9 @@ void Arrays(){
     string AutoInferArray[]{"Lol", "Wow", "What"}; //size of the array will be 3
     cout << "Size of the array AutoInferArray[]{\"Lol\", \"Wow\", \"What\"}: " << std::size(AutoInferArray) <<  endl;
 
+    //old way of finding size when there is no C++17 support available,
+    cout << "Size of the AutoInferArray traditional way sizeof(AutoInferArray)/sizeof(AutoInferArray[0]) : " << sizeof(AutoInferArray)/sizeof(AutoInferArray[0])  << "\n" << endl; 
+
     //this single variable handles loops and size of the array. Keeping it constant will help us keeping it constant through out - avoids errors
     const int Size = 2; 
     string Names[Size]{};
@@ -47,7 +50,14 @@ void Arrays(){
         cout << Names[i] << endl;
         Names[i] = "NotOkay"; //this is fine
         cout << "Used brackets" << endl;
-    }
+    } cout <<"\n" << endl;
+
+    //interesting way to use forloop to sum elements of the array!
+    int ArrayToSum[] {5,10,20};
+    int sum{};
+    for (size_t i = 0; i < std::size(ArrayToSum); sum += ArrayToSum[i++]); //try to avoid this since, readable code is more important than being percieved clever
+    cout << "Sum of the ArrayToSum[] {5,10,20} : " << sum  << "\n"<< endl;
+    
 
     
 
@@ -85,8 +95,6 @@ void ForLoop(){
     {
         /* code */
     }
-    
-
 
 
 }//(2)
