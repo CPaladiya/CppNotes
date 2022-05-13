@@ -91,11 +91,51 @@ void ForLoop(){
     
     //also, it can be done like this too,
     size_t j {}; //initialized with zero
-    for (; j < 3; j++)
-    {
-        /* code */
+    for (; j < 3; j++); //equivalent to for (; j < 3; j++){}
+    
+
+    //a loop can be initiated with floating point values as well
+    for (float i = 0.01f; i < 2.06f; i+=0.56f);
+
+    //we can initialize multiple values in for loops as well
+    for (int i = 0, j = 25, k = 30 ; i < 3; i++, j+=3, k+=10)
+    {   
+        //comma operator can be used to aggregate printing of multiple variables
+        //this will print each variable in a new line
+        cout << (i,j,k) <<endl; 
+
+        //keep in mind, execution of i++, j+=3 and K+=10 only occurs 
+        //after the loop has processed once
     }
 
+    //range based loop
+    cout << "\n"<< endl;
+    int MyRange[] {998,125};
+    for (int x : MyRange)
+    {   
+        cout << "Range based loop! : " << x << endl;
+    }
+
+    //skipping loop iterations
+    for (size_t i = 0; i < 8; i++)
+    {
+        //skip to the next iteration with contunue;
+        if(i==4) { cout << "Skipping at value 4" << endl; continue;} 
+        cout << " Breaking the loop at 6, value of i : " << i << endl;
+        //break at certain iteration and get out of the loop for good
+        if(i==6) break;
+        //return; //within a function using return; will break out of the loop and function as well.
+    }
+    
+    //while controlling the loop, it is essential to know if you are working with unsigned int
+    //since overflow can be a serious issue
+    unsigned int uIntValue = 10;
+    int NegValue = 5685;
+    cout << "\nUnwanted results from automatic casting :  deducting usingint from bigger int value (10 - 5685 = should be -5675) : " << uIntValue - NegValue << endl;
+    uIntValue = -568;
+    cout << "Assigning a negative value to unsigned int : uIntValue = -568 : uIntValue = " << uIntValue;
+
+    //all things should be considered with while and do_while loops as well.
 
 }//(2)
 
