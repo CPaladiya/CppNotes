@@ -72,8 +72,27 @@ void Arrays(){
     std::cout << " Printing char vowels[5] {'a','e','i','o','u'}; : "<< vowels << endl; //this will print aeiou
     //for safe guard with older compiler always make sure there is a null character at the end of array. Only store size-1 members and leave \0 at the end
     //but that is not the same with int array - here we get the address of the first byte!
+    //For loop below, can be a problem since at the end of aeiou in memory, we may or may not have \0 characer
+    //it will keep running untill we encounter null character, possibly in invalid mem space. so always make sure to have null character at the end
+    for (int i = 0; vowels[i] != '\0'; i++)
+        cout << " Printing vowels : " << vowels[i] << endl;
+
     int myInts[3] {1,5,9};
     std::cout << " Printing int myInts[3] {1,5,9}; : "<< myInts << endl; //this is printing address at the start of the array: 0x63f7b8
+
+    //to read from user input and to store in char array, insertion operators are not enough since they do not recognize the spaces. 
+    //user can use std::cin.getline() function. Here you can specify the location you want to store user input 
+    //and "c" - any character that indicates termination, instead of "\n" - uncomment block below to practice
+    /*const int maxLength = 10;
+    char inputStorage[maxLength]{};
+    std::cout << " Please enter something here ending  with * : " << endl;
+    std::cin.getline(inputStorage, maxLength, '*');
+    std::cout << " User entered : " << inputStorage << endl; */
+
+    //All about multi-dimensional array
+    
+    
+    
 
 
     
