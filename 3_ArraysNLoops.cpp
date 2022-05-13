@@ -35,10 +35,10 @@ void Arrays(){
 
     //automatically inferring the number of elements in array
     string AutoInferArray[]{"Lol", "Wow", "What"}; //size of the array will be 3
-    cout << "Size of the array AutoInferArray[]{\"Lol\", \"Wow\", \"What\"}: " << std::size(AutoInferArray) <<  endl;
+    std::cout << "Size of the array AutoInferArray[]{\"Lol\", \"Wow\", \"What\"}: " << std::size(AutoInferArray) <<  endl;
 
     //old way of finding size when there is no C++17 support available,
-    cout << "Size of the AutoInferArray traditional way sizeof(AutoInferArray)/sizeof(AutoInferArray[0]) : " << sizeof(AutoInferArray)/sizeof(AutoInferArray[0])  << "\n" << endl; 
+    std::cout << "Size of the AutoInferArray traditional way sizeof(AutoInferArray)/sizeof(AutoInferArray[0]) : " << sizeof(AutoInferArray)/sizeof(AutoInferArray[0])  << "\n" << endl; 
 
     //this single variable handles loops and size of the array. Keeping it constant will help us keeping it constant through out - avoids errors
     const int Size = 2; 
@@ -47,17 +47,34 @@ void Arrays(){
         Names[i] = "Wow"; //this is fine
     for (size_t i = 0; i < Size; i++) //if we want to execute multiple statements, we need to use brackets
     {
-        cout << Names[i] << endl;
+        std::cout << Names[i] << endl;
         Names[i] = "NotOkay"; //this is fine
-        cout << "Used brackets" << endl;
-    } cout <<"\n" << endl;
+        std::cout << "Used brackets" << endl;
+    } std::cout <<"\n" << endl;
 
     //interesting way to use forloop to sum elements of the array!
     int ArrayToSum[] {5,10,20};
     int sum{};
     for (size_t i = 0; i < std::size(ArrayToSum); sum += ArrayToSum[i++]); //try to avoid this since, readable code is more important than being percieved clever
-    cout << "Sum of the ArrayToSum[] {5,10,20} : " << sum  << "\n"<< endl;
+    std::cout << "Sum of the ArrayToSum[] {5,10,20} : " << sum  << "\n"<< endl;
     
+    //character arrays
+    char vowels[5] {'a','e','i','o','u'}; //this is not a string - its just an array of five characters
+    char vowels_extra[6] {'a','e','i','o','u'}; //since we have one extra space here, that will be initialized with null character - \0
+    char vowels_auto[] {'a','e','i','o','u'}; //will have five elements automatically
+
+    //char array with a string
+    char myName[10] {"What ever"}; //this is similar to
+    char myName_char [10] {'W','h','a','t',' ','e','v','e','r','\0'}; //notice the null character at the end
+    char autoNull[] {"Null"}; //the array will be of 5 characters with one null at the end - {'N','u','l','l','\0'}
+
+    //whenever we print the char array be carefull - with char we get entire string ununtill we have null character
+    std::cout << " Printing char vowels[5] {'a','e','i','o','u'}; : "<< vowels << endl; //this will print aeiou
+    //for safe guard with older compiler always make sure there is a null character at the end of array. Only store size-1 members and leave \0 at the end
+    //but that is not the same with int array - here we get the address of the first byte!
+    int myInts[3] {1,5,9};
+    std::cout << " Printing int myInts[3] {1,5,9}; : "<< myInts << endl; //this is printing address at the start of the array: 0x63f7b8
+
 
     
 
@@ -79,7 +96,7 @@ void ForLoop(){
     * https://stackoverflow.com/questions/131803/unsigned-int-vs-size-t#:~:text=When%20writing%20C%20code%20you,most%20efficiently%20perform%20integer%20arithmetic.
     * Excellent read - https://www.embedded.com/why-size_t-matters/ 
     * ********************/
-    cout << "In this system the Standard C++/C implementation has choosen size_t with size " << sizeof(size_t) << endl;
+    std::cout << "In this system the Standard C++/C implementation has choosen size_t with size " << sizeof(size_t) << endl;
 
 
     //so new way of writing loops is using size_t instead of int
@@ -102,26 +119,26 @@ void ForLoop(){
     {   
         //comma operator can be used to aggregate printing of multiple variables
         //this will print each variable in a new line
-        cout << (i,j,k) <<endl; 
+        std::cout << (i,j,k) <<endl; 
 
         //keep in mind, execution of i++, j+=3 and K+=10 only occurs 
         //after the loop has processed once
     }
 
     //range based loop
-    cout << "\n"<< endl;
+    std::cout << "\n"<< endl;
     int MyRange[] {998,125};
     for (int x : MyRange)
     {   
-        cout << "Range based loop! : " << x << endl;
+        std::cout << "Range based loop! : " << x << endl;
     }
 
     //skipping loop iterations
     for (size_t i = 0; i < 8; i++)
     {
         //skip to the next iteration with contunue;
-        if(i==4) { cout << "Skipping at value 4" << endl; continue;} 
-        cout << " Breaking the loop at 6, value of i : " << i << endl;
+        if(i==4) { std::cout << "Skipping at value 4" << endl; continue;} 
+        std::cout << " Breaking the loop at 6, value of i : " << i << endl;
         //break at certain iteration and get out of the loop for good
         if(i==6) break;
         //return; //within a function using return; will break out of the loop and function as well.
@@ -131,9 +148,9 @@ void ForLoop(){
     //since overflow can be a serious issue
     unsigned int uIntValue = 10;
     int NegValue = 5685;
-    cout << "\nUnwanted results from automatic casting :  deducting usingint from bigger int value (10 - 5685 = should be -5675) : " << uIntValue - NegValue << endl;
+    std::cout << "\nUnwanted results from automatic casting :  deducting usingint from bigger int value (10 - 5685 = should be -5675) : " << uIntValue - NegValue << endl;
     uIntValue = -568;
-    cout << "Assigning a negative value to unsigned int : uIntValue = -568 : uIntValue = " << uIntValue;
+    std::cout << "Assigning a negative value to unsigned int : uIntValue = -568 : uIntValue = " << uIntValue;
 
     //all things should be considered with while and do_while loops as well.
 
@@ -143,5 +160,5 @@ void ForLoop(){
 
 int main(){
     Arrays();      //(1)
-    ForLoop();     //(2)
+    //ForLoop();     //(2)
 }
