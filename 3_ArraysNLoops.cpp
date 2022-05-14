@@ -7,6 +7,7 @@ ______
 ***************************/
 
 #include "3_ArraysNLoops.h"
+#include <array>
 
 //** (1) ****************************//
 void Arrays(){
@@ -34,68 +35,112 @@ void Arrays(){
     //OneArray = SecondArray; // not allowed - to copy it assign it element by element
 
     //automatically inferring the number of elements in array
-    string AutoInferArray[]{"Lol", "Wow", "What"}; //size of the array will be 3
-    std::cout << "Size of the array AutoInferArray[]{\"Lol\", \"Wow\", \"What\"}: " << std::size(AutoInferArray) <<  endl;
+    std::string AutoInferArray[]{"Lol", "Wow", "What"}; //size of the array will be 3
+    std::cout << "Size of the array AutoInferArray[]{\"Lol\", \"Wow\", \"What\"}: " << AutoInferArray->size() <<  std::endl;
 
     //old way of finding size when there is no C++17 support available,
-    std::cout << "Size of the AutoInferArray traditional way sizeof(AutoInferArray)/sizeof(AutoInferArray[0]) : " << sizeof(AutoInferArray)/sizeof(AutoInferArray[0])  << "\n" << endl; 
+    std::cout << "Size of the AutoInferArray traditional way sizeof(AutoInferArray)/sizeof(AutoInferArray[0]) : " << sizeof(AutoInferArray)/sizeof(AutoInferArray[0])  << "\n" << std::endl; 
 
     //this single variable handles loops and size of the array. Keeping it constant will help us keeping it constant through out - avoids errors
     const int Size = 2; 
-    string Names[Size]{};
+    std::string Names[Size]{};
     for (size_t i = 0; i < Size; i++) //first sentense with ; after for loop is ran for the loop
         Names[i] = "Wow"; //this is fine
     for (size_t i = 0; i < Size; i++) //if we want to execute multiple statements, we need to use brackets
     {
-        std::cout << Names[i] << endl;
+        std::cout << Names[i] << std::endl;
         Names[i] = "NotOkay"; //this is fine
-        std::cout << "Used brackets" << endl;
-    } std::cout <<"\n" << endl;
+        std::cout << "Used brackets" << std::endl;
+    } std::cout <<"\n" << std::endl;
 
     //interesting way to use forloop to sum elements of the array!
     int ArrayToSum[] {5,10,20};
     int sum{};
     for (size_t i = 0; i < std::size(ArrayToSum); sum += ArrayToSum[i++]); //try to avoid this since, readable code is more important than being percieved clever
-    std::cout << "Sum of the ArrayToSum[] {5,10,20} : " << sum  << "\n"<< endl;
+    std::cout << "Sum of the ArrayToSum[] {5,10,20} : " << sum  << "\n"<< std::endl;
     
     //character arrays
-    char vowels[5] {'a','e','i','o','u'}; //this is not a string - its just an array of five characters
+    char vowels[5] {'a','e','i','o','u'}; //this is not a std::string - its just an array of five characters
     char vowels_extra[6] {'a','e','i','o','u'}; //since we have one extra space here, that will be initialized with null character - \0
     char vowels_auto[] {'a','e','i','o','u'}; //will have five elements automatically
 
-    //char array with a string
+    //char array with a std::string
     char myName[10] {"What ever"}; //this is similar to
-    char myName_char [10] {'W','h','a','t',' ','e','v','e','r','\0'}; //notice the null character at the end
-    char autoNull[] {"Null"}; //the array will be of 5 characters with one null at the end - {'N','u','l','l','\0'}
+    char myName_char [10] {'W','h','a','t',' ','e','v','e','r','\0'}; //notice the null character at the std::endl
+    char autoNull[] {"Null"}; //the array will be of 5 characters with one null at the std::endl - {'N','u','l','l','\0'}
 
-    //whenever we print the char array be carefull - with char we get entire string ununtill we have null character
-    std::cout << " Printing char vowels[5] {'a','e','i','o','u'}; : "<< vowels << endl; //this will print aeiou
-    //for safe guard with older compiler always make sure there is a null character at the end of array. Only store size-1 members and leave \0 at the end
+    //whenever we print the char array be carefull - with char we get entire std::string ununtill we have null character
+    std::cout << " Printing char vowels[5] {'a','e','i','o','u'}; : "<< vowels << std::endl; //this will print aeiou
+    //for safe guard with older compiler always make sure there is a null character at the std::endl of array. Only store size-1 members and leave \0 at the std::endl
     //but that is not the same with int array - here we get the address of the first byte!
-    //For loop below, can be a problem since at the end of aeiou in memory, we may or may not have \0 characer
-    //it will keep running untill we encounter null character, possibly in invalid mem space. so always make sure to have null character at the end
+    //For loop below, can be a problem since at the std::endl of aeiou in memory, we may or may not have \0 characer
+    //it will keep running untill we encounter null character, possibly in invalid mem space. so always make sure to have null character at the std::endl
     for (int i = 0; vowels[i] != '\0'; i++)
-        cout << " Printing vowels : " << vowels[i] << endl;
+        std::cout << " Printing vowels : " << vowels[i] << std::endl;
 
     int myInts[3] {1,5,9};
-    std::cout << " Printing int myInts[3] {1,5,9}; : "<< myInts << endl; //this is printing address at the start of the array: 0x63f7b8
+    std::cout << " Printing int myInts[3] {1,5,9}; : "<< myInts << std::endl; //this is printing address at the start of the array: 0x63f7b8
 
     //to read from user input and to store in char array, insertion operators are not enough since they do not recognize the spaces. 
     //user can use std::cin.getline() function. Here you can specify the location you want to store user input 
     //and "c" - any character that indicates termination, instead of "\n" - uncomment block below to practice
     /*const int maxLength = 10;
     char inputStorage[maxLength]{};
-    std::cout << " Please enter something here ending  with * : " << endl;
+    std::cout << " Please enter something here std::endling  with * : " << std::endl;
     std::cin.getline(inputStorage, maxLength, '*');
-    std::cout << " User entered : " << inputStorage << endl; */
+    std::cout << " User entered : " << inputStorage << std::endl; */
 
     //All about multi-dimensional array
+    float bunny[2][3]; //array with junk values
+    float CleanBunny[2][3]{}; //array with values initialized
+    int JumpBunny[3][2]{
+                        {2,3}, 
+                        {4,89},
+                        {34,65}
+                        };
+    std::cout << " \nJumpBunny " << std::endl;
+    for (size_t i = 0; i < std::size(JumpBunny); i++)
+        for (size_t j = 0; j < std::size(JumpBunny[0]); j++)
+            std::cout << JumpBunny[i][j] << " ";
+        
     
-    
-    
+    //what happens when we miss one of the member in between?
+    int missedBunny[3][2]{
+                        {2,3}, 
+                        {4  }, //missing element will be zero
+                        {34,65}
+                        };
+    std::cout << " \nmissedBunny " << std::endl;
+    for (size_t i = 0; i < std::size(missedBunny); i++)
+        for (size_t j = 0; j < std::size(missedBunny[0]); j++)
+            std::cout << missedBunny[i][j] << " ";
 
+     int LinemissedBunny[3][2]{
+                        {2,3}, 
+                        {34,65} //last row will be {0,0}
+                        };
+    std::cout << " \nLinemissedBunny " << std::endl;
+    for (size_t i = 0; i < std::size(LinemissedBunny); i++)
+        for (size_t j = 0; j < std::size(LinemissedBunny[0]); j++)
+            std::cout << LinemissedBunny[i][j] << " ";
 
-    
+    //with mutli dimension arrays, array can only guess one channel
+    //int mutliarray [][] { {1,2 }, {3,4 }}; - will not compile
+    //array can only automatically workout size of one channel out of all
+
+    int multiArray [][3] {{1,2}, {3,4}}; //this works fine since we only need to deduce once channel
+    int multimultiArray [][2][3]{
+        { {1,2,3},{4,5,7} },
+        { {2,3,4}, {3,5,2} },
+        { {45,56,4}, {5,3,2} },
+        { {2,32,41}, {6,2,8} }
+    };
+    std::cout << " \nmultimultiArray " << std::endl;
+    for (size_t i = 0; i < std::size(multimultiArray); i++)
+        for (size_t j = 0; j < std::size(multimultiArray[0]); j++)
+            for (size_t k = 0; k < std::size(multimultiArray[0][0]); k++)
+                std::cout << multimultiArray[i][j][k] << " ";
+
 
 }//(1)
 
@@ -115,7 +160,7 @@ void ForLoop(){
     * https://stackoverflow.com/questions/131803/unsigned-int-vs-size-t#:~:text=When%20writing%20C%20code%20you,most%20efficiently%20perform%20integer%20arithmetic.
     * Excellent read - https://www.embedded.com/why-size_t-matters/ 
     * ********************/
-    std::cout << "In this system the Standard C++/C implementation has choosen size_t with size " << sizeof(size_t) << endl;
+    std::cout << "In this system the Standard C++/C implementation has choosen size_t with size " << sizeof(size_t) << std::endl;
 
 
     //so new way of writing loops is using size_t instead of int
@@ -138,26 +183,26 @@ void ForLoop(){
     {   
         //comma operator can be used to aggregate printing of multiple variables
         //this will print each variable in a new line
-        std::cout << (i,j,k) <<endl; 
+        std::cout << (i,j,k) <<std::endl; 
 
         //keep in mind, execution of i++, j+=3 and K+=10 only occurs 
         //after the loop has processed once
     }
 
     //range based loop
-    std::cout << "\n"<< endl;
+    std::cout << "\n"<< std::endl;
     int MyRange[] {998,125};
     for (int x : MyRange)
     {   
-        std::cout << "Range based loop! : " << x << endl;
+        std::cout << "Range based loop! : " << x << std::endl;
     }
 
     //skipping loop iterations
     for (size_t i = 0; i < 8; i++)
     {
         //skip to the next iteration with contunue;
-        if(i==4) { std::cout << "Skipping at value 4" << endl; continue;} 
-        std::cout << " Breaking the loop at 6, value of i : " << i << endl;
+        if(i==4) { std::cout << "Skipping at value 4" << std::endl; continue;} 
+        std::cout << " Breaking the loop at 6, value of i : " << i << std::endl;
         //break at certain iteration and get out of the loop for good
         if(i==6) break;
         //return; //within a function using return; will break out of the loop and function as well.
@@ -167,7 +212,7 @@ void ForLoop(){
     //since overflow can be a serious issue
     unsigned int uIntValue = 10;
     int NegValue = 5685;
-    std::cout << "\nUnwanted results from automatic casting :  deducting usingint from bigger int value (10 - 5685 = should be -5675) : " << uIntValue - NegValue << endl;
+    std::cout << "\nUnwanted results from automatic casting :  deducting usingint from bigger int value (10 - 5685 = should be -5675) : " << uIntValue - NegValue << std::endl;
     uIntValue = -568;
     std::cout << "Assigning a negative value to unsigned int : uIntValue = -568 : uIntValue = " << uIntValue;
 

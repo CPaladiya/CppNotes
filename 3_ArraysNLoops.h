@@ -11,7 +11,6 @@ ______
 #include <array>
 
 //#include <compare>  //spaceship operator - (2)
-using namespace std;
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Clarification Funcs ^^^^^^^^^^^^^^^^^ //
 
 void Arrays();      //(1)
