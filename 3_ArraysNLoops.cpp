@@ -1,7 +1,8 @@
 /********* Arrays and loops: What's covered?
 ______
 ** (1) Array initialization
-** (2) For loop
+** (2) stdArray
+** (3) For loop
 
 
 ***************************/
@@ -141,10 +142,29 @@ void Arrays(){
             for (size_t k = 0; k < std::size(multimultiArray[0][0]); k++)
                 std::cout << multimultiArray[i][j][k] << " ";
 
+    //Similarly we can have multidimensional character arrays
+    //after storing MyCar rest of the 7 characters will be null characters.
+    char Cars[][12]{
+        "MyCar",
+        "YourCar",
+        "OurCar"
+    };
+    std::cout << " \nchar Array " << std::endl;
+    for (size_t i = 0; i < std::size(Cars); i++)
+        for (size_t j = 0; j < std::size(Cars[0]); j++)
+            std::cout << Cars[i][j]  << " " << i << " "<<  j << " "; //this does not print all the lines since insertion operator does not recognize the null character
 
+    //Array usually demands size at the compile time, however some compilers do allow user to specify size just before its initialized.
 }//(1)
 
 //** (2) ****************************//
+void stdArrays(){
+
+    //c++ offers more advance type of array with some built in functionality. That is std::array<T,N> T-type, N-no of elements
+
+}//(2)
+
+//** (3) ****************************//
 void ForLoop(){
 
     //very traditional for loop
@@ -218,11 +238,12 @@ void ForLoop(){
 
     //all things should be considered with while and do_while loops as well.
 
-}//(2)
+}//(3)
 
 
 
 int main(){
-    Arrays();      //(1)
-    //ForLoop();     //(2)
+    //Arrays();      //(1)
+    stdArrays();     //(2)
+    //ForLoop();     //(3)
 }

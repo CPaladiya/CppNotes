@@ -1,6 +1,8 @@
 /********* Arrays and loops: What's covered?
 ______
 ** (1) Array initialization
+** (2) stdArray
+** (3) For loop
 
 
 ***************************/
@@ -14,4 +16,5 @@ ______
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^ Clarification Funcs ^^^^^^^^^^^^^^^^^ //
 
 void Arrays();      //(1)
-void ForLoop();     //(2)
+void stdArrays();    //(2)
+void ForLoop();     //(3)
