@@ -298,10 +298,74 @@ void ForLoop(){
 
 }//(3)
 
+//** (4) ****************************//
+void stdVector(){
+
+    //Use std::vector when number of elements can not be decided during the compile time
+    //if number of element is already known and fixed, use the type std::array
+
+    //similar to array, vector does not need to know the number of elements to be stored at the compile time
+    std::vector<double> FirstVector;
+    //values can be added with push_back or emplace_back
+    FirstVector.push_back(2.65);
+    FirstVector.emplace_back(6.697);
+
+    //it is possible to define a vec with predefined values - notice the bracket type
+    std::vector<int> PreDefVec(15); //vec with 15 elements and all with value of 0
+    std::vector<int> preDefVec1{15}; //vec with one element having value of 15
+
+    //it is also possible to define a vec with specific values 
+    std::vector<double> preDefVecValue(10,2.35); //vec with 10 elements and each with value of 2.35
+    std::vector<double> preDefVecValue1 {10,2.35}; //vec with 2 elements having value of 10 and 2.35
+
+    //both the examples above used () brackets. With {} brackets we can initialize vec like we did with array
+    std::vector<int> SampelVec {2,6,8,6,3};
+
+    //vector also has the ability to deduce type
+    std::vector deduceTypeVec1 {5,6,9};
+    std::vector deduceTypeVec2 (15,20.25); //type float deduced
+
+    //similar to array, vector element can be accessed using [] or the at(). Where [] will not do the bound check, however at() will do that
+    for (size_t i = 0; i <= deduceTypeVec1.size(); i++)
+        std::cout << "Here is the value out of bound : " << deduceTypeVec1[i] << std::endl;
+    //however this can be prevented using .at() which will generate out_of_range error with some overhead
+
+    //Similar to array we can perform the comparision with vector too. To perform comparision, size does not have to be same, only the data type has to be the same
+    //lexical order means Dictionary order. Dumb comes before Dumber in dictionary. Dumb has smaller index than Dumber in dictionary
+    std::vector <int> OneVec {1,2,5,6};
+    std::vector <int> TwoVec {1,2,5,6,8,9};
+    std::vector <int> ThreeVec {1,3,4,7};
+    std::vector <float> FourVec {1,2,5,6};
+    std::cout << "\nThree vec in interest : OneVec {1,2,5,6}, TwoVec {1,2,5,6,8,9}, ThreeVec {1,3,4,7}, FourVec {1,2,5,6}" << std::endl;
+    if(OneVec != TwoVec) std::cout << "OneVec is different than TwoVec" << std::endl;
+    if(OneVec < TwoVec) std::cout << "TwoVec is lexically bigger than oneVec" << std::endl;    
+    //if(OneVec != FourVec) std::cout << "OneVec and FourVec does not have the same datatype" << std::endl; //does not compile, since vector types are different
+
+    //also, a vector can be assinged to vector of any length as long as it has the same data type
+    std::vector <int> copyOneVec {1,5,9,8,7,6};
+    copyOneVec = OneVec;
+    std::cout << "\nOneVec {1,2,5,6} and copyOneVec {1,5,9,8,7,6}, we have done copyOneVec = OneVec" << std::endl;
+    std::cout << "copyOneVec size : " << copyOneVec.size() << std::endl;
+
+    //similar to fill in array, we have assing function in vector
+    copyOneVec.assign(5,26); //now copyOneVec has first 5 elements and each with value of 26
+    std::cout << "After copyOneVec.assign(5,26), copyOneVec size : " << copyOneVec.size() << " values ";
+    for (size_t i = 0; i < copyOneVec.size(); i++)
+        std::cout << " " << copyOneVec[i] << " ";
+    copyOneVec.assign(10,15);//assigning first 10 elements the value of 15
+    std::cout << "\nAfter copyOneVec.assign(10,15), copyOneVec size : " << copyOneVec.size() << " values ";
+    for (size_t i = 0; i < copyOneVec.size(); i++)
+        std::cout << " " << copyOneVec[i] << " ";
+
+    //vector provides functions such as empty(), erase(), clear() etc.
+
+}//(4)
+
 
 
 int main(){
     //Arrays();      //(1)
-    stdArrays();     //(2)
+    //stdArrays();     //(2)
     //ForLoop();     //(3)
+    stdVector();     //(4)
 }
