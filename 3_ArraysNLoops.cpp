@@ -187,8 +187,38 @@ void stdArrays(){
         //std::cout << "autoArray with size 3, when accessing inValid index with .at(): " << autoArray.at(i) << std::endl;
 
     //Using the less than or greater than operators with an entire array
-    
+    //Only works if the container is of the same size and same type
+    std::array one {1,2,5,6};
+    std::array two {1,5,2,6};
+    std::array three {1,5,2,6};
 
+    //only same when all the elements at each index are same
+    //for greater or less than comparision, the result of first element that differs
+    std::cout << "\nThree Arrays one {1,2,5,6}, two {1,5,2,6} and three {1,5,2,6} " << std::endl;
+    if(two == three) std::cout << "Two and three are equal" << std::endl;
+    if(one != two) std::cout << "One and two are not equal" << std::endl;
+    if(one < two) std::cout << "One is less than two" << std::endl;
+    if(two > one) std::cout << "two is greater than one" << std::endl;
+
+    //however these does not work with normal arrays
+    int oneNormal[] {1,2,5,6};
+    int twoNormal[] {1,5,2,6};
+    //since comparision here really means comparision of the address space of the first element!
+    //not the comparision of its elements
+    std::cout << "Address of oneNormal: " << oneNormal << " Address of twoNormal : " << twoNormal << std::endl; 
+    //std::cout << "So doing oneNormal>twonormal : is comparing the address sequence : " << (oneNormal == twoNormal) << std::endl; //Compilation depends on the compiler. may or may not allow
+
+    //we can not do twoNormal = oneNormal, since its really assignment of the address, it does not assign elements of oneNormal to twoNormal
+    //however with std::array user can perform assignment as long as they are of the same size and same type of elements
+    two = one; //completely fine
+
+    //moreover we can store array inside an array which we can not do with the normal array,
+    //no performance overhead with std::array unless we use .at()
+    std::array<std::array<int, 5>,6> newArray;
+
+    //with legacy code, we may have function that only accepts the c-style array, not the std one, to access the code array inside the std::array
+    auto Array = newArray.data(); //with .data() we can use the core array encapsulated within std::array
+    
 
 }//(2)
 
