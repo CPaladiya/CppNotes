@@ -161,6 +161,34 @@ void Arrays(){
 void stdArrays(){
 
     //c++ offers more advance type of array with some built in functionality. That is std::array<T,N> T-type, N-no of elements
+    std::array<int, 5> stdArray; //array with garbage values
+    std::array<float, 15> arrayInitialized {1.32, 4.22, 6.0};//first three variable as defined and rest 0.0..etc
+    std::array<double, 34> emptyArray {};//all the values 0
+
+    //as of C++17, compiler can deduce the type and length on its own
+    //std::array autoArray {1,3.54,5}; //can not deduce from the mixed type or an empty array
+    std::array autoArray{1,3,4}; //this works fine
+    autoArray.fill(25); //all the array members now will be 25. 
+    //Specific numbers such as pi can be written as std::numbers::pi with <numbers> module if the compiler allows
+
+    //also the size of the array can be deduced as follow
+    std::cout << "The size of the autoArray: " << autoArray.size() << std::endl;
+
+    //for loop can be used here with array like this
+    for (auto number : autoArray)
+        {std::cout << "Array autoArray.fill(25) member : " << number << std::endl;}
+    
+    //When accessing the members of array [] is useful. However it does not check for the validity of the index.
+    // Contrary to that .at() does check the validity of the index.
+    for (size_t i = 0; i < autoArray.size() + 2; i++)
+        std::cout << "autoArray with size 3, when accessing inValid index with [] : " << autoArray[i] << std::endl;
+    //using .at(), upon encountering the invalid index, it will throw std::out_of_range error.
+    //for (size_t i = 0; i < autoArray.size() + 2; i++)
+        //std::cout << "autoArray with size 3, when accessing inValid index with .at(): " << autoArray.at(i) << std::endl;
+
+    //Using the less than or greater than operators with an entire array
+    
+
 
 }//(2)
 
