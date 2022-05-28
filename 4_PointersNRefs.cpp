@@ -22,11 +22,6 @@ void Pointers(){
     //varibale untill now does not point to anything. However that is not a good idea, since it contains some garbage value that can produce untraceable error
     //to avoid that always initialize pointer variables with nullptr like this
     double *iniVar{nullptr}; //this does not contain any garbage values.
-
-    
-
-
-    
 }//(1)
 
 
